@@ -17,9 +17,9 @@ def admin_login():
     password = input("Password: ")
     cursor.execute("SELECT * FROM admin WHERE username=%s AND password=%s", (username, password))
     if cursor.fetchone():
-        print("Login Successful!\n")
+        print("Login Successful \n")
         return True
-    print("Invalid Credentials!\n")
+    print("Invalid Credentials \n")
     return False
 
 def add_student():
@@ -34,7 +34,7 @@ def add_student():
         (name, age, gender, email, course)
     )
     db.commit()
-    print("Student Added Successfully!\n")
+    print("Student Added Successfully \n")
 
 def view_students():
     print("=== All Students ===")
@@ -44,14 +44,14 @@ def view_students():
         for student in students:
             print(f"ID: {student[0]} | Name: {student[1]} | Age: {student[2]} | Gender: {student[3]} | Email: {student[4]} | Course: {student[5]}")
     else:
-        print("No students found!")
+        print("No students found ")
 
 def update_student():
     student_id = int(input("Enter Student ID to update: "))
     cursor.execute("SELECT * FROM students WHERE student_id=%s", (student_id,))
     student = cursor.fetchone()
     if not student:
-        print("Student not found!")
+        print("Student not found ")
         return
     print("Leave blank to keep current value.")
     name = input(f"Name [{student[1]}]: ") or student[1]
@@ -64,13 +64,13 @@ def update_student():
         (name, age, gender, email, course, student_id)
     )
     db.commit()
-    print("Student Updated Successfully!\n")
+    print("Student Updated Successfully \n")
 
 def delete_student():
     student_id = int(input("Enter Student ID to delete: "))
     cursor.execute("DELETE FROM students WHERE student_id=%s", (student_id,))
     db.commit()
-    print("Student Deleted Successfully!\n")
+    print("Student Deleted Successfully \n")
 
 def main_menu():
     while True:
@@ -90,10 +90,10 @@ def main_menu():
         elif choice == '4':
             delete_student()
         elif choice == '5':
-            print("Exiting... Goodbye!")
+            print("Exiting... Goodbye ")
             break
         else:
-            print("Invalid choice!")
+            print("Invalid choice ")
 
 if admin_login():
     main_menu()
